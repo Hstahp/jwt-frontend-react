@@ -28,6 +28,7 @@ function Login() {
                         </div>
                         <button className="btn btn-primary">Login</button>
                         <span className="text-center">
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <a className="forgot-password" href="#">
                                 Forgot your password?
                             </a>

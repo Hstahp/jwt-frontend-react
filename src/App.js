@@ -1,7 +1,8 @@
 import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import Nav from './components/Navigation/Nav';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import Nav from './components/Navigation/Nav';
 import './components/Navigation/Nav.scss';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
@@ -25,6 +26,18 @@ function App() {
                     <Route path="/about">About</Route>
                 </Switch>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </Router>
     );
 }
