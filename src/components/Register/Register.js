@@ -1,8 +1,17 @@
-import './Register.scss';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+
+import './Register.scss';
+
 function Register() {
     const history = useHistory();
 
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/test-api').then((res) => {
+            console.log('>>>check data: ', res.data);
+        });
+    }, []);
     const handleLogin = () => {
         history.push('/login');
     };
