@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/Navigation/Nav';
 import './components/Navigation/Nav.scss';
 import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 function App() {
     return (
         <Router>
@@ -17,6 +18,9 @@ function App() {
                     <Route path="/contact">Contact</Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/register">
+                        <Register />
                     </Route>
                     <Route path="/about">About</Route>
                 </Switch>
