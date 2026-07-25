@@ -10,36 +10,51 @@ function Register() {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const defaultCheckValid = {
+        isValidEmail: true,
+        isValidPhone: true,
+        isValidPassword: true,
+        isValidUsername: true,
+        isValidConfirmPassword: true,
+    };
+    const [objCheckInput, setObjCheckInput] = useState(defaultCheckValid);
 
     const history = useHistory();
 
-    // useEffect(() => {
-    //     axios.get('http://localhost:8080/api/test-api').then((res) => {
-    //         console.log('>>>check data: ', res.data);
-    //     });
-    // }, []);
+    useEffect(() => {
+        // axios.get('http://localhost:8080/api/v1/test-api').then((res) => {
+        //     console.log('>>>check data: ', res.data);
+        // });
+    }, []);
 
     const isValidInputs = () => {
+        setObjCheckInput(defaultCheckValid);
+
         if (!email) {
             toast.error('Email is required');
+            setObjCheckInput({ ...defaultCheckValid, isValidEmail: false });
             return false;
         }
         if (!phone) {
             toast.error('Phone is required');
+            setObjCheckInput({ ...defaultCheckValid, isValidPhone: false });
             return false;
         }
         if (!password) {
             toast.error('Password is required');
+            setObjCheckInput({ ...defaultCheckValid, isValidPassword: false });
             return false;
         }
         if (password !== confirmPassword) {
             toast.error('Confirm password is not match');
+            setObjCheckInput({ ...defaultCheckValid, isValidConfirmPassword: false });
             return false;
         }
         let regx = /\S+@\S+\.\S+/;
 
         if (!regx.test(email)) {
             toast.error('Please enter a valid email');
+            setObjCheckInput({ ...defaultCheckValid, isValidEmail: false });
             return false;
         }
         return true;
@@ -52,6 +67,14 @@ function Register() {
     const handleRegister = () => {
         let check = isValidInputs();
         if (!check) return;
+        else {
+            axios.post('http://localhost:8080/api/v1/register', {
+                email,
+                phone,
+                password,
+                username,
+            });
+        }
 
         let userData = {
             email: email,
@@ -77,7 +100,7 @@ function Register() {
                         <div className="form-group form-floating">
                             <input
                                 type="text"
-                                className="form-control"
+                                className={objCheckInput.isValidEmail ? 'form-control' : 'form-control is-invalid'}
                                 placeholder="Email address"
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
@@ -87,7 +110,7 @@ function Register() {
                         <div className="form-group form-floating">
                             <input
                                 type="text"
-                                className="form-control"
+                                className={objCheckInput.isValidPhone ? 'form-control' : 'form-control is-invalid'}
                                 placeholder="Phone number"
                                 value={phone}
                                 onChange={(event) => setPhone(event.target.value)}
@@ -97,7 +120,7 @@ function Register() {
                         <div className="form-group form-floating">
                             <input
                                 type="text"
-                                className="form-control"
+                                className={objCheckInput.isValidUsername ? 'form-control' : 'form-control is-invalid'}
                                 placeholder="Username"
                                 value={username}
                                 onChange={(event) => setUsername(event.target.value)}
@@ -107,7 +130,7 @@ function Register() {
                         <div className="form-group form-floating">
                             <input
                                 type="password"
-                                className="form-control"
+                                className={objCheckInput.isValidPassword ? 'form-control' : 'form-control is-invalid'}
                                 placeholder="Password"
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
@@ -117,7 +140,9 @@ function Register() {
                         <div className="form-group form-floating">
                             <input
                                 type="password"
-                                className="form-control"
+                                className={
+                                    objCheckInput.isValidConfirmPassword ? 'form-control' : 'form-control is-invalid'
+                                }
                                 placeholder="Re-enter password"
                                 value={confirmPassword}
                                 onChange={(event) => setConfirmPassword(event.target.value)}
