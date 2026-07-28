@@ -4,7 +4,7 @@ function Nav(props) {
     const [isShow, setIsShow] = useState(true);
     const location = useLocation();
     useEffect(() => {
-        if (location.pathname === '/login') {
+        if (location.pathname === '/login' || location.pathname === '/register') {
             setIsShow(false);
         }
     }, [location]);
