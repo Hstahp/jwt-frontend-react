@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import './Users.scss';
 import { deleteUser, fetchAllUser } from '../../services/userService';
 import ModalDelete from './ModalDelete';
+import ModalUser from './ModalUser';
 
 function Users() {
     const [listUsers, setListUsers] = useState([]);
@@ -142,6 +143,7 @@ function Users() {
                 confirmedDeleteUser={confirmedDeleteUser}
                 dataModal={dataModal}
             />
+            <ModalUser />
         </>
     );
 }
