@@ -14,6 +14,7 @@ function Users() {
     const [totalPages, setTotalPages] = useState(0);
     const [isShowModalDelete, setIsShoModalDelete] = useState(false);
     const [dataModal, setDataModal] = useState({});
+    const [isShowModalUser, setIsShowModalUser] = useState(false);
 
     useEffect(() => {
         fetchUsers();
@@ -52,6 +53,11 @@ function Users() {
             toast.error(response.data.EM);
         }
     };
+
+    const onHideModalUser = () => {
+        setIsShowModalUser(false);
+    };
+
     return (
         <>
             <div className="container">
@@ -61,7 +67,9 @@ function Users() {
                             <h3>Table User</h3>
                             <div className="actions">
                                 <button className="btn btn-success">Refesh</button>
-                                <button className="btn btn-primary">Add new user</button>
+                                <button className="btn btn-primary" onClick={() => setIsShowModalUser(true)}>
+                                    Add new user
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -143,7 +151,7 @@ function Users() {
                 confirmedDeleteUser={confirmedDeleteUser}
                 dataModal={dataModal}
             />
-            <ModalUser />
+            <ModalUser title={'Create new user'} onHide={onHideModalUser} show={isShowModalUser} />
         </>
     );
 }
