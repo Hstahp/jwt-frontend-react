@@ -82,11 +82,10 @@ const ModalUser = (props) => {
     };
 
     const checkValidateInput = () => {
+        if (action === 'UPDATE') return true;
+
         setValidInputs(validInputsDefault);
         let arr = ['email', 'phone', 'password', 'group'];
-        if (action === 'UPDATE') {
-            arr = ['email', 'phone', 'group'];
-        }
         let check = true;
         for (let i = 0; i < arr.length; i++) {
             if (!userData[arr[i]]) {
@@ -107,12 +106,12 @@ const ModalUser = (props) => {
         if (check === true) {
             let res =
                 action === 'CREATE'
-                    ? await createNewUser({ ...userData, groupID: userData['group'] })
-                    : await updateCurrentUser({ ...userData, groupID: userData['group'] });
+                    ? await createNewUser({ ...userData, groupId: userData['group'] })
+                    : await updateCurrentUser({ ...userData, groupId: userData['group'] });
             if (res.data && res.data.EC === 0) {
                 toast.success(res.data.EM);
                 props.onHide();
-                setUserData({ ...defaultUserData, group: userGroups[0]?.id || '' });
+                setUserData({ ...defaultUserData, group: userGroups && userGroups.length > 0 ? userGroups[0].id : '' });
             }
             if (res.data && res.data.EC !== 0) {
                 toast.error(res.data.EM);
