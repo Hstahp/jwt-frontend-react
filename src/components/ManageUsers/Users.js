@@ -12,9 +12,15 @@ function Users() {
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(3);
     const [totalPages, setTotalPages] = useState(0);
+
+    //Modal delete
     const [isShowModalDelete, setIsShoModalDelete] = useState(false);
     const [dataModal, setDataModal] = useState({});
+
+    //Modal update/create user
     const [isShowModalUser, setIsShowModalUser] = useState(false);
+    const [actionModalUser, setActionModalUser] = useState('CREATE');
+    const [dataModalUser, setDataModalUser] = useState({});
 
     useEffect(() => {
         fetchUsers();
@@ -43,6 +49,12 @@ function Users() {
         setDataModal({});
     };
 
+    const handleEditUser = (user) => {
+        setActionModalUser('UPDATE');
+        setDataModalUser(user);
+        setIsShowModalUser(true);
+    };
+
     const confirmedDeleteUser = async () => {
         let response = await deleteUser(dataModal);
         if (response && response.data.EC === 0) {
@@ -54,8 +66,10 @@ function Users() {
         }
     };
 
-    const onHideModalUser = () => {
+    const onHideModalUser = async () => {
         setIsShowModalUser(false);
+        setDataModalUser({});
+        await fetchUsers();
     };
 
     return (
@@ -66,8 +80,16 @@ function Users() {
                         <div>
                             <h3>Table User</h3>
                             <div className="actions">
-                                <button className="btn btn-success">Refesh</button>
-                                <button className="btn btn-primary" onClick={() => setIsShowModalUser(true)}>
+                                <button className="btn btn-success" onClick={() => fetchUsers()}>
+                                    Refresh
+                                </button>
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                        setActionModalUser('CREATE');
+                                        setIsShowModalUser(true);
+                                    }}
+                                >
                                     Add new user
                                 </button>
                             </div>
@@ -91,13 +113,18 @@ function Users() {
                                         {listUsers.map((item, index) => {
                                             return (
                                                 <tr key={`row-${index}`}>
-                                                    <td>{index + 1}</td>
+                                                    <td>{(currentPage - 1) * currentLimit + index + 1}</td>
                                                     <td>{item.id}</td>
                                                     <td>{item.email}</td>
                                                     <td>{item.username}</td>
                                                     <td>{item.Group ? item.Group.name : ''}</td>
                                                     <td>
-                                                        <button className="btn btn-warning mx-1">Edit</button>
+                                                        <button
+                                                            className="btn btn-warning mx-1"
+                                                            onClick={() => handleEditUser(item)}
+                                                        >
+                                                            Edit
+                                                        </button>
                                                         <button
                                                             className="btn btn-danger"
                                                             onClick={() => handleDeleteUser(item)}
@@ -151,7 +178,14 @@ function Users() {
                 confirmedDeleteUser={confirmedDeleteUser}
                 dataModal={dataModal}
             />
-            <ModalUser title={'Create new user'} onHide={onHideModalUser} show={isShowModalUser} />
+            <ModalUser
+                title={actionModalUser === 'CREATE' ? 'Create new user' : 'Edit a user'}
+                onHide={onHideModalUser}
+                show={isShowModalUser}
+                fetchUsers={fetchUsers}
+                action={actionModalUser}
+                dataModalUser={dataModalUser}
+            />
         </>
     );
 }
