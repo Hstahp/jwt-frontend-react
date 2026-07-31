@@ -69,10 +69,8 @@ function Register() {
     const handleRegister = async () => {
         let check = isValidInputs();
         if (check === true) {
-            let response = await registerNewUser(email, phone, password, username);
-            let serverData = response.data;
-
-            if (+serverData.EC === 0) {
+            let serverData = await registerNewUser(email, phone, password, username);
+            if (serverData && +serverData.EC === 0) {
                 toast.success(serverData.EM);
                 history.push('/login');
             } else {

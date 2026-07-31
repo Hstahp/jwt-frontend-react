@@ -36,7 +36,7 @@ function Login() {
         }
 
         let response = await loginUser(valueLogin, password);
-        if (response + response.EC === 0) {
+        if (response && +response.EC === 0) {
             //success
             let data = {
                 isAuthenticated: true,
@@ -44,7 +44,7 @@ function Login() {
             };
             sessionStorage.setItem('account', JSON.stringify(data));
             history.push('/users');
-            window.location.reload();
+            // window.location.reload();
         }
         if (response && +response.EC !== 0) {
             //error
@@ -64,7 +64,7 @@ function Login() {
             history.push('/');
             window.location.reload();
         }
-    }, [history]);
+    }, []);
 
     return (
         <div className="login-container ">
@@ -86,7 +86,9 @@ function Login() {
                                 onChange={(event) => setValueLogin(event.target.value)}
                                 placeholder="Email address or phone number"
                             />
-                            <label>Email address or phone number</label>
+                            <label className={valueLogin && valueLogin.length > 0 ? 'd-none' : ''}>
+                                Email address or phone number
+                            </label>
                         </div>
                         <div className="form-group form-floating">
                             <input
@@ -97,7 +99,7 @@ function Login() {
                                 placeholder="Password"
                                 onKeyPress={(event) => handlePressEnter(event)}
                             />
-                            <label>Password</label>
+                            <label className={password && password.length > 0 ? 'd-none' : ''}>Password</label>
                         </div>
                         <button
                             className="btn btn-primary"
