@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
 // Set config defaults when creating the instance
 const instance = axios.create({
     baseURL: 'http://localhost:8080',
@@ -32,7 +32,25 @@ instance.interceptors.response.use(
     function (error) {
         // Any status codes that fall outside the range of 2xx cause this function to trigger
         // Do something with response error
-        return Promise.reject(error);
+        const status = (error && error.response && error.response.status) || 500;
+        switch (status) {
+            case 401:
+                toast.error('Unauthorized the user. Please login again');
+                // window.location.href = '/login';
+                return Promise.reject(error);
+            case 403:
+                toast.error(`You don't have permission to access this resource`);
+                return Promise.reject(error);
+            case 404:
+                toast.error('Not Found');
+                return Promise.reject(error);
+            case 500:
+                toast.error('Internal Server Error');
+                return Promise.reject(error);
+            default:
+                toast.error('Something went wrong. Please try again later');
+                return Promise.reject(error);
+        }
     },
 );
 
