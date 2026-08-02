@@ -1,22 +1,43 @@
+import { useContext } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Nav from './components/Navigation/Nav';
 
+import Nav from './components/Navigation/Nav';
 import AppRoutes from './routes/AppRoutes';
+import { UserContext } from './context/UserContext';
 import './components/Navigation/Nav.scss';
 import './App.scss';
-
+import { ThreeDots } from 'react-loader-spinner';
 function App() {
+    const { user } = useContext(UserContext);
     return (
         <>
             <Router>
-                <div className="app-header">
-                    <Nav />
-                </div>
-                <div className="app-container">
-                    <AppRoutes />
-                </div>
+                {user && user.isLoading ? (
+                    <div className="loading-container">
+                        <ThreeDots
+                            height={100}
+                            width={100}
+                            radius={9}
+                            color="#1877f2"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+                        <div className="loading-text">Loading data.......</div>
+                    </div>
+                ) : (
+                    <>
+                        <div className="app-header">
+                            <Nav />
+                        </div>
+                        <div className="app-container">
+                            <AppRoutes />
+                        </div>
+                    </>
+                )}
                 <ToastContainer
                     position="top-right"
                     autoClose={5000}
