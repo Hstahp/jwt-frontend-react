@@ -50,7 +50,7 @@ function Login() {
                 token,
                 account: { groupWithRoles, email, username },
             };
-            sessionStorage.setItem('account', JSON.stringify(data));
+
             loginContext(data);
 
             history.push('/users');
@@ -67,14 +67,6 @@ function Login() {
             handleLogin();
         }
     };
-
-    useEffect(() => {
-        let session = sessionStorage.getItem('account');
-        if (session) {
-            history.push('/');
-            window.location.reload();
-        }
-    }, []);
 
     return (
         <div className="login-container ">
