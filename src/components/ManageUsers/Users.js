@@ -126,7 +126,7 @@ function Users() {
                                                     <td>
                                                         <span
                                                             title="Edit"
-                                                            className="edit"
+                                                            className="edit mb-sm-2"
                                                             onClick={() => handleEditUser(item)}
                                                         >
                                                             <i className="fa fa-pencil"></i>

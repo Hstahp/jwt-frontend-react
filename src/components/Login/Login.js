@@ -50,6 +50,7 @@ function Login() {
                 token,
                 account: { groupWithRoles, email, username },
             };
+            localStorage.setItem('jwt', token);
 
             loginContext(data);
 
