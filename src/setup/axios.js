@@ -35,7 +35,9 @@ instance.interceptors.response.use(
         const status = (error && error.response && error.response.status) || 500;
         switch (status) {
             case 401:
-                toast.error('Unauthorized the user. Please login again');
+                if (error.config && error.config.url && !error.config.url.includes('/api/v1/account')) {
+                    toast.error('Unauthorized the user. Please login again');
+                }
                 // window.location.href = '/login';
                 return error.response.data;
             case 403:
