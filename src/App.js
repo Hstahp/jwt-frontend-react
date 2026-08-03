@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Nav from './components/Navigation/Nav';
+import NavHeader from './components/Navigation/NavHeader';
 import AppRoutes from './routes/AppRoutes';
 import { UserContext } from './context/UserContext';
 import './components/Navigation/Nav.scss';
@@ -31,7 +31,7 @@ function App() {
                 ) : (
                     <>
                         <div className="app-header">
-                            <Nav />
+                            <NavHeader />
                         </div>
                         <div className="app-container">
                             <AppRoutes />
