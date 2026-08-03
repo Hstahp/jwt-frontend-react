@@ -1,0 +1,168 @@
+.form-group {
+    position: relative;
+
+    .form-control {
+        height: 52px;
+        background-color: #fff;
+        font-size: 14px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        padding: 10px 1rem;
+        transition: all 0.2s ease-in-out;
+
+        &::placeholder {
+            opacity: 0;
+            color: transparent;
+        }
+
+        &:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+        }
+    }
+
+    & > input {
+        padding-left: 1rem;
+    }
+
+    & > label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        margin-left: 1rem;
+        transition: all 0.2s ease-in-out;
+        border: none;
+        color: #6c757d;
+        font-size: 14px;
+        pointer-events: none;
+    }
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(0.85) translateY(-0.9rem) translateX(0.15rem);
+    color: #0d6efd;
+    background-color: #fff;
+    padding: 0 4px;
+    margin-left: 0.8rem;
+    height: auto;
+}
+
+.role-container {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+
+    .title-role {
+        h4 {
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .role-child {
+        margin-bottom: 1rem;
+
+        .role-row-badge {
+            span {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                background-color: #e2e8f0;
+                color: #475569;
+                font-weight: 600;
+                font-size: 14px;
+                border-radius: 50%;
+            }
+        }
+
+        .actions-container {
+            justify-content: flex-start;
+
+            @media (max-width: 767.98px) {
+                justify-content: flex-end;
+                margin-top: 0.5rem;
+            }
+        }
+    }
+
+    .btn-action {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 0;
+
+        i {
+            font-size: 15px;
+        }
+
+        &.btn-add-row {
+            color: #0d9488;
+            background-color: #ccfbf1;
+
+            &:hover {
+                background-color: #0d9488;
+                color: #ffffff;
+                transform: translateY(-2px) rotate(90deg);
+                box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            }
+
+            &:active {
+                transform: translateY(0) rotate(90deg);
+            }
+        }
+
+        &.btn-delete-row {
+            color: #e11d48;
+            background-color: #ffe4e6;
+
+            &:hover {
+                background-color: #e11d48;
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    .btn-save {
+        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 15px;
+        padding: 11px 26px;
+        border: none;
+        border-radius: 8px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+
+        i {
+            font-size: 14px;
+        }
+
+        &:hover {
+            background: linear-gradient(135deg, #4338ca 0%, #2563eb 100%);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
