@@ -1,62 +1,63 @@
-.form-group {
-    position: relative;
-
-    .form-control {
-        height: 52px;
-        background-color: #fff;
-        font-size: 14px;
-        border: 1px solid #ced4da;
-        border-radius: 6px;
-        padding: 10px 1rem;
-        transition: all 0.2s ease-in-out;
-
-        &::placeholder {
-            opacity: 0;
-            color: transparent;
-        }
-
-        &:focus {
-            border-color: #86b7fe;
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
-        }
-    }
-
-    & > input {
-        padding-left: 1rem;
-    }
-
-    & > label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        margin-left: 1rem;
-        transition: all 0.2s ease-in-out;
-        border: none;
-        color: #6c757d;
-        font-size: 14px;
-        pointer-events: none;
-    }
-}
-
-.form-floating > .form-control:focus ~ label,
-.form-floating > .form-control:not(:placeholder-shown) ~ label {
-    transform: scale(0.85) translateY(-0.9rem) translateX(0.15rem);
-    color: #0d6efd;
-    background-color: #fff;
-    padding: 0 4px;
-    margin-left: 0.8rem;
-    height: auto;
-}
-
-.form-floating > .form-control.is-invalid ~ label {
-    color: #dc3545;
-}
-
 .role-container {
     padding-top: 1.5rem;
     padding-bottom: 3rem;
+
+    .form-group {
+        position: relative;
+
+        .form-control {
+            height: 52px;
+            background-color: #fff;
+            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 10px 1rem;
+            transition: all 0.2s ease-in-out;
+
+            &::placeholder {
+                opacity: 0;
+                color: transparent;
+            }
+
+            &:focus {
+                border-color: #86b7fe;
+                box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+            }
+        }
+
+        & > input {
+            padding-left: 1rem;
+            padding-top: 1rem !important;
+        }
+
+        & > label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+            transition: all 0.2s ease-in-out;
+            border: none;
+            color: #6c757d;
+            font-size: 14px;
+            pointer-events: none;
+        }
+    }
+
+    .form-floating > .form-control:focus ~ label,
+    .form-floating > .form-control:not(:placeholder-shown) ~ label {
+        transform: scale(0.85) translateY(-0.9rem) translateX(0.15rem);
+        color: #0d6efd;
+        background-color: #fff;
+        padding: 0 4px !important;
+        margin-left: 0.8rem;
+        height: auto;
+    }
+
+    .form-floating > .form-control.is-invalid ~ label {
+        color: #dc3545;
+    }
 
     .title-role {
         h4 {
@@ -168,5 +169,67 @@
         &:active {
             transform: translateY(0);
         }
+    }
+}
+
+table {
+    th,
+    td {
+        vertical-align: middle;
+
+        &:last-child {
+            text-align: center;
+        }
+    }
+}
+
+.edit,
+.delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    margin: 0 6px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    i {
+        padding-right: 0 !important;
+        font-size: 16px;
+    }
+}
+
+.edit {
+    color: #d97706;
+    background-color: #fef3c7;
+
+    &:hover {
+        background-color: #f59e0b;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.delete {
+    color: #dc2626;
+    background-color: #fee2e2;
+
+    &:hover {
+        background-color: #ef4444;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0);
     }
 }
