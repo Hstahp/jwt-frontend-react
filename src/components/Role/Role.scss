@@ -50,6 +50,10 @@
     height: auto;
 }
 
+.form-floating > .form-control.is-invalid ~ label {
+    color: #dc3545;
+}
+
 .role-container {
     padding-top: 1.5rem;
     padding-bottom: 3rem;
@@ -140,7 +144,7 @@
     }
 
     .btn-save {
-        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+        background-color: #ffc107;
         color: #ffffff;
         font-weight: 600;
         font-size: 15px;
@@ -148,17 +152,17 @@
         border: none;
         border-radius: 8px;
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+        box-shadow: 0 4px 14px rgba(244, 244, 197, 0.25);
 
         i {
             font-size: 14px;
         }
 
         &:hover {
-            background: linear-gradient(135deg, #4338ca 0%, #2563eb 100%);
+            background-color: #ffa012;
             color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 6px 18px rgba(255, 204, 157, 0.4);
         }
 
         &:active {

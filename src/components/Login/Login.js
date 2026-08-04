@@ -87,10 +87,10 @@ function Login() {
                                 className={objInputs.isValidValueLogin ? 'form-control' : 'form-control is-invalid'}
                                 value={valueLogin}
                                 onChange={(event) => setValueLogin(event.target.value)}
-                                placeholder="Email address or phone number"
+                                placeholder="Email or phone number"
                             />
-                            <label className={valueLogin && valueLogin.length > 0 ? 'd-none' : ''}>
-                                Email address or phone number
+                            <label>
+                                Email or phone number
                             </label>
                         </div>
                         <div className="form-group form-floating">
@@ -102,7 +102,7 @@ function Login() {
                                 placeholder="Password"
                                 onKeyPress={(event) => handlePressEnter(event)}
                             />
-                            <label className={password && password.length > 0 ? 'd-none' : ''}>Password</label>
+                            <label>Password</label>
                         </div>
                         <button
                             className="btn btn-primary"
