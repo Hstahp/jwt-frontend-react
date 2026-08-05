@@ -5,7 +5,10 @@ const createRoles = (roles) => {
 };
 
 const fetchAllRoles = (page, limit) => {
-    return axios.get(`/api/v1/role/read?page=${page}&limit=${limit}`);
+    if (page && limit) {
+        return axios.get(`/api/v1/role/read?page=${page}&limit=${limit}`);
+    }
+    return axios.get('/api/v1/role/read');
 };
 
 const deleteRole = (role) => {
@@ -15,4 +18,8 @@ const updateRole = (roleData) => {
     return axios.put('/api/v1/role/update', { ...roleData });
 };
 
-export { createRoles, fetchAllRoles, deleteRole, updateRole };
+const fetchRolesByGroup = (groupId) => {
+    return axios.get(`/api/v1/role/by-group/${groupId}`);
+};
+
+export { createRoles, fetchAllRoles, deleteRole, updateRole, fetchRolesByGroup };
