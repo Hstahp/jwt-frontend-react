@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import _ from 'lodash';
 
 import { fetchGroup } from '../../services/userService';
-import { fetchAllRoles, fetchRolesByGroup } from '../../services/roleService';
+import { fetchAllRoles, fetchRolesByGroup, assignRolesToGroup } from '../../services/roleService';
 import './GroupRole.scss';
 
 const GroupRole = () => {
@@ -74,7 +74,29 @@ const GroupRole = () => {
         setAssignRolesByGroup(_assignRoleByGroup);
     };
 
-    const handleSaveRole = () => {};
+    const buildDataToSave = () => {
+        let result = {};
+        const _assignRoleByGroup = _.cloneDeep(assignRoleByGroup);
+        result.groupId = selectGroup;
+        let groupRolesFilter = _assignRoleByGroup.filter((item) => item.isAssigned === true);
+        let finalGroupRoles = groupRolesFilter.map((item) => {
+            let data = { groupId: +selectGroup, roleId: +item.id };
+            return data;
+        });
+        result.groupRoles = finalGroupRoles;
+        return result;
+    };
+
+    const handleSaveRole = async () => {
+        let data = buildDataToSave();
+        let res = await assignRolesToGroup(data);
+        if (res && res.EC === 0) {
+            toast.success(res.EM);
+        } else {
+            toast.error(res.EM);
+        }
+    };
+
     return (
         <div className="group-role-container">
             <div className="container">
