@@ -1,18 +1,25 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ThreeDots } from 'react-loader-spinner';
+import { Scrollbar } from 'react-scrollbars-custom';
 
 import NavHeader from './components/Navigation/NavHeader';
 import AppRoutes from './routes/AppRoutes';
 import { UserContext } from './context/UserContext';
 import './components/Navigation/Nav.scss';
 import './App.scss';
-import { ThreeDots } from 'react-loader-spinner';
 function App() {
     const { user } = useContext(UserContext);
+    const [scrollHeight, setScrollHeight] = useState(0);
+
+    useEffect(() => {
+        let windowHeight = window.innerHeight;
+        setScrollHeight(windowHeight);
+    }, [user]);
     return (
-        <>
+        <Scrollbar style={{ height: scrollHeight }}>
             <Router>
                 {user && user.isLoading ? (
                     <div className="loading-container">
@@ -40,7 +47,7 @@ function App() {
                 )}
                 <ToastContainer
                     position="top-right"
-                    autoClose={5000}
+                    autoClose={3000}
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick={false}
@@ -51,7 +58,7 @@ function App() {
                     theme="light"
                 />
             </Router>
-        </>
+        </Scrollbar>
     );
 }
 

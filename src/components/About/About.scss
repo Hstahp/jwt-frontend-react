@@ -1,0 +1,167 @@
+.about-page-container {
+    color: #2c3e50;
+    overflow-x: hidden;
+
+    // Header styling
+    .about-header {
+        position: relative;
+        background: linear-gradient(135deg, #20232a 0%, #17191e 100%);
+        padding: 60px 20px;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+        .about-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(97, 218, 251, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-title {
+            letter-spacing: -0.5px;
+        }
+
+        .text-muted-light {
+            color: #b0b8c4;
+            max-width: 600px;
+        }
+    }
+
+    // Badge styling
+    .bg-secondary-glow {
+        background: rgba(108, 117, 125, 0.15);
+        color: #adb5bd;
+        border: 1px solid rgba(108, 117, 125, 0.3);
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+
+    // Main layouts
+    .column-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #20232a;
+        letter-spacing: -0.2px;
+    }
+
+    // Card specifics
+    .tech-stack-card {
+        background: #ffffff;
+        border: 1px solid #e1e8ed;
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.3s ease;
+
+        .tech-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .bg-primary-subtle {
+            background-color: rgba(24, 119, 242, 0.1);
+        }
+
+        .bg-success-subtle {
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+
+        .tech-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+
+            li {
+                position: relative;
+                padding-left: 20px;
+                margin-bottom: 12px;
+                font-size: 0.9rem;
+                color: #4a5568;
+
+                i {
+                    position: absolute;
+                    left: 0;
+                    top: 4px;
+                }
+            }
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+    }
+
+    // Security Auditing Callout Box
+    .security-card {
+        background: #ffffff;
+        border: 1px solid #e1e8ed;
+
+        .security-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .bg-warning-subtle {
+            background-color: rgba(255, 193, 7, 0.15);
+        }
+
+        p {
+            line-height: 1.6;
+        }
+        
+        code {
+            background-color: #f1f5f9;
+            color: #ef4444;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+    }
+
+    // Developer card specifics
+    .developer-card {
+        .dev-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: #64748b;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .text-muted-dark {
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

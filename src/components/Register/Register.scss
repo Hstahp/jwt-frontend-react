@@ -78,7 +78,15 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        .return {
+            a {
+                text-decoration: none;
+            }
 
+            span {
+                padding-left: 7px;
+            }
+        }
         .form-floating > .form-control.is-invalid ~ label {
             color: #dc3545;
         }

@@ -1,12 +1,12 @@
 import './Login.scss';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 
 import { loginUser } from '../../services/userService';
 import { UserContext } from '../../context/UserContext';
 function Login() {
-    const { loginContext } = useContext(UserContext);
+    const { user, loginContext } = useContext(UserContext);
 
     const history = useHistory();
 
@@ -69,12 +69,21 @@ function Login() {
         }
     };
 
+    useEffect(() => {
+        if (user && user.isAuthenticated) {
+            history.push('/');
+        }
+    }, [user]);
     return (
         <div className="login-container ">
             <div className="container">
                 <div className="row px-3 px-sm-0">
                     <div className="content-left col-sm-7 col-12 d-none d-sm-block gap-3 py-3 ">
-                        <div className="brand">Facebook</div>
+                        <div className="brand">
+                            <Link to="/">
+                                <span title="Return to HomePage">Facebook</span>
+                            </Link>
+                        </div>
                         <div className="detail text-sm-start text-md-center">
                             Facebook helps you connect and share with the people in your life
                         </div>
@@ -89,9 +98,7 @@ function Login() {
                                 onChange={(event) => setValueLogin(event.target.value)}
                                 placeholder="Email or phone number"
                             />
-                            <label>
-                                Email or phone number
-                            </label>
+                            <label>Email or phone number</label>
                         </div>
                         <div className="form-group form-floating">
                             <input
@@ -123,6 +130,12 @@ function Login() {
                             <button className="btn btn-success" onClick={() => handleCreateNewAccount()}>
                                 Create new account
                             </button>
+                            <div className="mt-3 return">
+                                <Link to="/">
+                                    <i className="fa fa-arrow-circle-left"></i>
+                                    <span title="Return to HomePage">Return to HomePage</span>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-
+import { useEffect, useState, useContext } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 import { toast } from 'react-toastify';
 
 import { registerNewUser } from '../../services/userService';
 import './Register.scss';
 
 function Register() {
+    const { user } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
@@ -24,10 +25,10 @@ function Register() {
     const history = useHistory();
 
     useEffect(() => {
-        // axios.get('http://localhost:8080/api/v1/test-api').then((res) => {
-        //     console.log('>>>check data: ', res.data);
-        // });
-    }, []);
+        if (user && user.isAuthenticated === true) {
+            history.push('/');
+        }
+    }, [user]);
 
     const isValidInputs = () => {
         setObjCheckInput(defaultCheckValid);
@@ -84,7 +85,11 @@ function Register() {
             <div className="container">
                 <div className="row px-3 px-sm-0">
                     <div className="content-left col-sm-7 col-12 d-none d-sm-block gap-3 py-3 ">
-                        <div className="brand">Facebook</div>
+                        <div className="brand">
+                            <Link to="/">
+                                <span title="Return to HomePage">Facebook</span>
+                            </Link>
+                        </div>
                         <div className="detail text-sm-start text-md-center">
                             Facebook helps you connect and share with the people in your life
                         </div>
@@ -152,6 +157,12 @@ function Register() {
                             <button className="btn btn-success" onClick={() => handleLogin()}>
                                 Already've an account.
                             </button>
+                            <div className="mt-3 return">
+                                <Link to="/">
+                                    <i className="fa fa-arrow-circle-left"></i>
+                                    <span title="Return to HomePage">Return to HomePage</span>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
